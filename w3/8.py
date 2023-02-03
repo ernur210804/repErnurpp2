@@ -1,2 +1,2 @@
-
-myfirst_name = "John"
+thislist = ["apple", "banana", "cherry", "apple", "cherry"]
+print(thislist)

@@ -1,5 +1,4 @@
-"""
-This is a comment
-written in 
-more that just one line
-"""
+a = "Hello"
+b = "World"
+c = a + " " + b
+print(c)

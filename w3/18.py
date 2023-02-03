@@ -1,2 +1,2 @@
-x=5.5
-x=int(x)
+thistuple = ("apple", "banana", "cherry")
+print(thistuple)

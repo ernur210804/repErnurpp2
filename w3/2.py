@@ -1,2 +1,4 @@
-if 5 > 2:
-    print("Five is greater than two!")
+b = "Hello, World!"
+print(b[-5:-2])
+b = "Hello, World!"
+print(b[2:])

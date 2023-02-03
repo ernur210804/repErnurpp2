@@ -1,2 +1,2 @@
-x=5
-x=complex(x)
+thistuple = ("apple", "banana", "cherry")
+print(thistuple[1])

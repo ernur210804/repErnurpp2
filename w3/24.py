@@ -1,2 +1,5 @@
-txt="Hello World"
-txt=txt.toupper()
+thisset = {"apple", "banana", "cherry"}
+
+for x in thisset:
+  print(x)
+  
