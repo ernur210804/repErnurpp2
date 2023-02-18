@@ -1,4 +1,4 @@
-class string(object):
+class string():
     def __init__(self):
         self.s =""
     def get_string(self):
