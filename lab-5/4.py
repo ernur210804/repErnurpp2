@@ -1,12 +1,10 @@
 import re
 
-
-
 def text_match(text):
-        patterns = '^a(b*)$'
+        patterns = '[A-Z]+[a-z]+'
         if re.search(patterns,  text):
                 return 'Found a match!'
         else:
                 return('Not matched!')
-print(text_match('aaa'))
-print(text_match('abb'))
+text=str(input('enter the text '))
+print(text_match(text))
