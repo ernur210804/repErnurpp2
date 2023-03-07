@@ -4,4 +4,4 @@ def to_snake(text):
     return re.sub('([a-z0-9])([A-Z])', r'\1_\2', str1).lower()
 
 text=str(input("Enter the text: "))
-print(to_snake(text))
+print(to_snake(text)) 
