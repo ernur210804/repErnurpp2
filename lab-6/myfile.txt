@@ -1,0 +1,10 @@
+Counting the number of characters is important because 
+almost all the text boxes that rely on user input have a certain limit on the number of characters that can be inserted.
+For example, If the file is small, you can use readlines() 
+or an A loop approach. If you have a lot of files to work with To determine
+line count, use the Generator and Raw interface,  
+If you don’t want to 
+load the complete file in, utilize a
+loop and enumerate() for huge files. 
+This program in Data file handling in Python emphasizes counting the number 
+of lines in a text file in Python. 
