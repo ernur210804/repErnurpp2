@@ -24,7 +24,7 @@ MAX_BULLETS=3000
 BORDER=pygame.Rect(WIDTH//2-5,0,10,HEIGHT)
 
 BULLET_HIT_SOUND=pygame.mixer.Sound(os.path.join('Assets','Grenade+1.mp3'))
-BULLET_FIRE_SOUND=pygame.mixer.Sound(os.path.join('Assets','Gun+Silencer.mp3'))
+ BULLET_FIRE_SOUND=pygame.mixer.Sound(os.path.join('Assets','Gun+Silencer.mp3'))
 #BULLET_FIRE_SOUND1=pygame.mixer.Sound(os.path.join('Assets','TFU2.mp3'))
 #BULLET_FIRE_SOUND2=pygame.mixer.Sound(os.path.join('Assets','chort0.mp3'))
 

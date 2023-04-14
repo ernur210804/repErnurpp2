@@ -66,10 +66,6 @@ def main():
         rot_mickey_sec_rect.center=mickey_sec_rect.center
         screen.blit(rot_mickey_sec,rot_mickey_sec_rect)
         
-        
-        
-        
-        
         pygame.display.update()
         
         clock.tick(FPS)
