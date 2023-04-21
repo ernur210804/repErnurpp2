@@ -17,21 +17,19 @@ GREEN = (0, 255, 0)
 BLACK = (0, 0, 0)
 WHITE = (255, 255, 255)
 
-# Other Variables for use in the program
 SCREEN_WIDTH = 600
 SCREEN_HEIGHT = 800
 SPEED = 5
 SCORE = 0
 SCORE2 = 0
 
-# Setting up Fonts
 font = pygame.font.SysFont("Times New Roman", 60)
 font_small = pygame.font.SysFont("Times New Roman", 20)
 game_over = font.render("Game Over", True, BLACK)
 
 background = pygame.image.load(os.path.join("Assets","street.png"))
 background = pygame.transform.scale(background, (600, 800))
-# Create a white screen
+
 Display = pygame.display.set_mode((600, 800))
 Display.fill(WHITE)
 pygame.display.set_caption("Game")
@@ -75,7 +73,6 @@ class Enemy2(pygame.sprite.Sprite):
             self.rect.center = (random.randint(40, SCREEN_WIDTH - 40), 0)
 
 
-# Our coin class
 
 
 class Point(pygame.sprite.Sprite):
@@ -104,10 +101,7 @@ class Player(pygame.sprite.Sprite):
 
     def move(self):
         pressed_keys = pygame.key.get_pressed()
-       # if pressed_keys[K_UP]:
-        #self.rect.move_ip(0, -5)
-       # if pressed_keys[K_DOWN]:
-        # self.rect.move_ip(0,5)
+
 
         if self.rect.left > 0:
             if pressed_keys[K_LEFT]:
@@ -135,14 +129,11 @@ all_sprites.add(E1)
 all_sprites.add(E2)
 all_sprites.add(C1)
 
-# Adding a new User event
 INC_SPEED = pygame.USEREVENT + 1
 pygame.time.set_timer(INC_SPEED, 1000)
 
-# Game Loop
 while True:
 
-    # Cycles through all events occurring
     for event in pygame.event.get():
         if event.type == INC_SPEED:
             SPEED += 0.5
@@ -156,10 +147,8 @@ while True:
     scores2 = font_small.render('Coins:' + str(SCORE2), True, YELLOW)
     Display.blit(scores2, (SCREEN_WIDTH-130, 10))
 
-    # Moves and Re-draws all Sprites
     for entity in all_sprites:
         Display.blit(entity.image, entity.rect)
-       # Display.blit(entity.image, entity.rect)
         entity.move()
 
     # To be run if collision occurs between Player and Enemy
@@ -181,12 +170,10 @@ while True:
         time.sleep(2)
         pygame.quit()
         sys.exit()
-    # Coin pick up mechanic
     if pygame.sprite.spritecollideany(P1, coins):
         C1.rect.top = 0
         C1.rect.center = (random.randint(20, SCREEN_WIDTH - 20), 0)
         SCORE2 += 1
-        # I forget to find a good coin_pickup sound, so it is what it is
-        # sound = pygame.mixer.Sound('coin_pickup.mp3')
+       
     pygame.display.update()
     FramePerSec.tick(FPS)

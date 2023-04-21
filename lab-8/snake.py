@@ -22,7 +22,6 @@ game_window = pygame.display.set_mode((Constant.window_x, Constant.window_y))
 
 FPS = pygame.time.Clock()
 
-# определение положения змеи по умолчанию
 snake_position = [100, 50]
 
 # определение первых 4 блоков тела змеи
@@ -32,13 +31,16 @@ snake_body = [[100, 50],
               [70, 50]
               ]
 
-# fruit position
 fruit_position = [random.randrange(1, (Constant.window_x // 10)) * 10,
                   random.randrange(1, (Constant.window_y // 10)) * 10]
 
-fruit_spawn = True
+fruit_position2 = [random.randrange(1, (Constant.window_x // 10)) * 10,
+                  random.randrange(1, (Constant.window_y // 10)) * 10]
 
-# установка направления змеи по умолчанию к
+fruit_spawn = True
+fruit_spawn2 = True
+
+
 # право
 direction = 'RIGHT'
 change_to = direction
@@ -51,18 +53,15 @@ x = 0
 
 # отображение функции Score
 def show_score(choice, color, font, size):
-    # создание объекта шрифта score_font
     score_font = pygame.font.SysFont(font, size)
 
-    # создать объект поверхности отображения
-    # score_surface
+
     score_surface = score_font.render('Score : ' + str(score), True, color)
 
-    # создаем прямоугольный объект для текста
-    # поверхностный объект
+  
     score_rect = score_surface.get_rect()
 
-    # отображение текста
+   
     game_window.blit(score_surface, score_rect)
 
 
@@ -70,56 +69,51 @@ def show_level(choice, color, font, size):
     # создание объекта шрифта score_font
     score_font = pygame.font.SysFont(font, size)
 
-    # создать объект поверхности отображения
-    # score_surface
+   
     score_surface = score_font.render('Level : ' + str(level), True, color)
 
-    # создаем прямоугольный объект для текста
-    # поверхностный объект
+    
     score_rect = score_surface.get_rect(topright=(650, 0))
 
-    # отображение текста
+    
     game_window.blit(score_surface, score_rect)
 
 
-# функция завершения игры
+
 def game_over():
-    # создание объекта шрифта my_font
+   
     my_font = pygame.font.SysFont('arial', 50)
 
-    # создание текстовой поверхности, на которой текст
-    # будет нарисовано
+   
     game_over_surface = my_font.render(
         'Score is : ' + str(score) + '  Level :' + str(level), True, Constant.red)
 
-    # создать прямоугольный объект для текста
-    # surface object
+   
     game_over_rect = game_over_surface.get_rect()
 
-    # установка положения текста
+   
     game_over_rect.midtop = (Constant.window_x / 2, Constant.window_y / 4)
 
-    # blit нарисует текст на экране
+    
     game_window.blit(game_over_surface, game_over_rect)
     pygame.display.flip()
 
-    # через 2 секунды мы выйдем из программы
+   
     time.sleep(3)
 
-    # деактивация библиотеки pygame
+    
     pygame.quit()
 
-    # quit the program
+   
     quit()
 
 
-# Main Function
+
 
 tm = time.time()
 
 while True:
 
-    # обработка ключевых событий
     for event in pygame.event.get():
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_UP:
@@ -131,9 +125,6 @@ while True:
             if event.key == pygame.K_RIGHT:
                 change_to = 'RIGHT'
 
-    # Если две клавиши нажаты одновременно
-    # мы не хотим, чтобы змея разделялась на две
-    # направлений одновременно
     if change_to == 'UP' and direction != 'DOWN':
         direction = 'UP'
     if change_to == 'DOWN' and direction != 'UP':
@@ -143,9 +134,10 @@ while True:
     if change_to == 'RIGHT' and direction != 'LEFT':
         direction = 'RIGHT'
 
-    # Перемещение змеи
+    
     if direction == 'UP':
         snake_position[1] -= 10
+        
     if direction == 'DOWN':
         snake_position[1] += 10
     if direction == 'LEFT':
@@ -157,18 +149,22 @@ while True:
     # если фрукты и змеи сталкиваются, то очки
     # будет увеличено на 10
     snake_body.insert(0, list(snake_position))
-    if snake_position[0] == fruit_position[0] and snake_position[1] == fruit_position[1]:
+    if (snake_position[0] == fruit_position[0] or snake_position[0]== fruit_position2[0]) and (snake_position[1] == fruit_position[1] or snake_position[1] == fruit_position2[1]):
         score += random.randrange(10, 31, 10)
         fruit_spawn = False
+        
     else:
         # timer and change pos
         if time.time() - tm > 5:
             tm = time.time()
             fruit_spawn = False
+            
         snake_body.pop()
 
     if not fruit_spawn:
         fruit_position = [random.randrange(1, (Constant.window_x // 10)) * 10,
+                          random.randrange(1, (Constant.window_y // 10)) * 10]
+        fruit_position2 = [random.randrange(1, (Constant.window_x // 10)) * 10,
                           random.randrange(1, (Constant.window_y // 10)) * 10]
 
     fruit_spawn = True
@@ -184,6 +180,8 @@ while True:
                          pygame.Rect(pos[0], pos[1], 10, 10))
     pygame.draw.rect(game_window, Constant.white, pygame.Rect(
         fruit_position[0], fruit_position[1], 10, 10))
+    pygame.draw.rect(game_window, Constant.white, pygame.Rect(
+        fruit_position2[0], fruit_position2[1], 10, 10))
 
     # Game Over conditions
     if snake_position[0] < 0 or snake_position[0] > Constant.window_x - 10:
