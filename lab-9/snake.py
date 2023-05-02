@@ -17,6 +17,8 @@ time = 5000
 flag = False
 pygame.mixer.init()
 
+font = pygame.font.SysFont('Verdana', 15)
+
 
 class Food:
     def __init__(self, im):
@@ -32,7 +34,7 @@ class Food:
         self.x = randrange(0, w, step)
         self.y = randrange(0, h, step)
         self.r = randint(1,2)
-        self.image = pygame.transform.scale(pygame.image.load(os.path.join("Assets",f'food{self.r}.png') ),(60,60))
+        self.image = pygame.transform.scale(pygame.image.load(os.path.join("Assets",f'food{self.r}.png') ),(50,50))
 
 class Snake:
     def __init__(self):
@@ -110,11 +112,18 @@ def disappear(t):
     
 # создаем объекты змейки и еды
 s = Snake()
-f = Food(pygame.transform.scale(pygame.image.load(os.path.join("Assets",f'food{randint(1,2)}.png')),(60,60)))
+f = Food(pygame.transform.scale(pygame.image.load(os.path.join("Assets",f'food{randint(1,2)}.png')),(50,50)))
 disappear(5000)
 
+
+        
+
 # запускаем основной цикл
+
+
 while is_running:
+    screen.fill('black')
+
     clock.tick(fps)
     events = pygame.event.get()
     for event in events:
@@ -187,3 +196,12 @@ while is_running:
         pygame.display.flip()
 
     pygame.display.flip()
+    
+
+
+        
+        
+        
+        
+        
+        

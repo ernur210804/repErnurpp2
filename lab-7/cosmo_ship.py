@@ -24,9 +24,9 @@ MAX_BULLETS=3000
 BORDER=pygame.Rect(WIDTH//2-5,0,10,HEIGHT)
 
 BULLET_HIT_SOUND=pygame.mixer.Sound(os.path.join('Assets','Grenade+1.mp3'))
- BULLET_FIRE_SOUND=pygame.mixer.Sound(os.path.join('Assets','Gun+Silencer.mp3'))
-#BULLET_FIRE_SOUND1=pygame.mixer.Sound(os.path.join('Assets','TFU2.mp3'))
-#BULLET_FIRE_SOUND2=pygame.mixer.Sound(os.path.join('Assets','chort0.mp3'))
+#BULLET_FIRE_SOUND=pygame.mixer.Sound(os.path.join('Assets','Gun+Silencer.mp3'))
+BULLET_FIRE_SOUND1=pygame.mixer.Sound(os.path.join('Assets','TFU2.mp3'))
+BULLET_FIRE_SOUND2=pygame.mixer.Sound(os.path.join('Assets','chort0.mp3'))
 
 
 SHIP_WIDTH=50
@@ -144,17 +144,17 @@ def main():
                 if event.key == pygame.K_e and len(yellow_bullets)<MAX_BULLETS:
                     bullet=pygame.Rect(yellow.x+yellow.width,yellow.y+yellow.height//2-2,10,5)
                     yellow_bullets.append(bullet)
-                    BULLET_FIRE_SOUND.play()
+                    BULLET_FIRE_SOUND1.play()
                     
                 if event.key == pygame.K_KP9 and len(red_bullets) < MAX_BULLETS:
                     bullet = pygame.Rect(red.x, red.y + red.height//2 - 2, 10, 5)
                     red_bullets.append(bullet)
-                    BULLET_FIRE_SOUND.play()
+                    BULLET_FIRE_SOUND2.play()
                     
             if event.type==RED_HIT:
                 red_health-=1
                 BULLET_HIT_SOUND.play()
-                99
+                
             if event.type==YELLOW_HIT:
                 yellow_health-=1
                 BULLET_HIT_SOUND.play()
